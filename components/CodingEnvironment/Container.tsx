@@ -23,10 +23,11 @@ export const CodingEnvironmentContainer: React.FC<CodingEnvironmentContainerProp
             display:flex;
             overflow-x: scroll;
             overflow-y: hidden;
+            flex-grow: 1;
         }
         .lower-bar-container {
             width:100%;
-            height: 10rem;
+            height: 5rem;
             border: 1px solid black;
             margin-top: 0px;
             border-radius: 10px;
