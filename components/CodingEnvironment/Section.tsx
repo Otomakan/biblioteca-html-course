@@ -13,7 +13,6 @@ export const CodingEnvironmentSection: React.FC = ({ children }) => {
 
         }
         .editor-section-container {
-            margin: 20px;
             width: 33vw;
             min-width: 500px;
       

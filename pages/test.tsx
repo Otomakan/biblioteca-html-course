@@ -4,7 +4,7 @@ import { CodingEnvironment } from '../common/CodingEnvironment'
 
 const Introduction: NextPage = () => {
     return (
-        <CodingEnvironment instructions={<Instructions />} codeLanguage='html' defaultCode='' />
+        <CodingEnvironment instructions={<Instructions />} codeLanguage='html' defaultCode='' nextPage='/test-2' />
     )
 }
 

@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-
+import { LowerBarProps }
 type SectionType = 'default' | 'header'
 type SectionProp = {
     type?: SectionType
