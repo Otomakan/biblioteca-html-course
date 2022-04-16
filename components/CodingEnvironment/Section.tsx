@@ -10,13 +10,12 @@ export const CodingEnvironmentSection: React.FC = ({ children }) => {
             height: 100%;
             max-height: 100%;
             overflow: scroll;
-
         }
         .editor-section-container {
-            width: 33vw;
+            width: 32%;
             min-width: 500px;
       
-            border: 1px solid black;
+            border: 3px solid black;
             border-radius: 10px;
            padding: 2em;
         }

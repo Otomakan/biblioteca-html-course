@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
-import { Layout } from '../components/Layout'
 import { CodingEnvironment } from '../common/CodingEnvironment'
 
 const Introduction: NextPage = () => {
+    const defaultCode = `<body> <p>What's up, doc?</p> </body>`
     return (
-        <CodingEnvironment instructions={<Instructions />} codeLanguage='html' defaultCode='' nextPage='/test-2' />
+        <CodingEnvironment instructions={<Instructions />} codeLanguage='html' defaultCode={defaultCode} nextPage='/test-2' />
     )
 }
 

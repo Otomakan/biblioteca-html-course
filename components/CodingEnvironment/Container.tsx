@@ -1,16 +1,15 @@
 import { LowerBar } from "./LowerBar"
-import { MouseEventHandler } from "react";
 import { LowerBarProps } from "./LowerBar";
 export interface CodingEnvironmentContainerProps extends LowerBarProps { }
 
-export const CodingEnvironmentContainer: React.FC<CodingEnvironmentContainerProps> = ({ nextPage, previousPage, onSubmit, children }) => {
+export const CodingEnvironmentContainer: React.FC<CodingEnvironmentContainerProps> = ({ nextPage, previousPage, children }) => {
     return (
         <div className="code-environment-container">
             <div className="code-environment">
                 {children}
             </div>
             <div className="lower-bar-container">
-                <LowerBar nextPage={nextPage} previousPage={previousPage} onSubmit={onSubmit} />
+                <LowerBar nextPage={nextPage} previousPage={previousPage} />
             </div>
             <style jsx>{`
         .code-environment-container {
@@ -18,19 +17,21 @@ export const CodingEnvironmentContainer: React.FC<CodingEnvironmentContainerProp
             flex-direction: column;
             height: 100vh;
             padding: 20px;
+            padding-top: 6rem;
         }
         .code-environment {
             display:flex;
             overflow-x: scroll;
             overflow-y: hidden;
             flex-grow: 1;
+            justify-content: space-between;
         }
         .lower-bar-container {
             width:100%;
             height: 5rem;
-            border: 1px solid black;
             margin-top: 0px;
             border-radius: 10px;
+            min-height: 60px;
         }
       `}</style>
         </div>

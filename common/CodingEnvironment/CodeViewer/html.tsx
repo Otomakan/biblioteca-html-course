@@ -11,6 +11,7 @@ export const HTMLViewer: React.FC<HTMLViewerProps> = ({ code }) => {
             .html-editor-iframe {
                 width: 100%;
                 border: 0;
+                font-size: 3rem;
             }
             `}</style>
         </>

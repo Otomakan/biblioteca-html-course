@@ -7,7 +7,7 @@ export interface LowerBarProps {
 }
 export const LowerBar: React.FC<LowerBarProps> = ({ nextPage, previousPage }) => {
     return (
-        <div className="lower-bar">
+        <div className="lower-bar-container">
             <Link passHref href={previousPage || ''}>
                 <ButtonPrimary inactive={!Boolean(previousPage)} style={{ margin: '0px' }}>
                     Previous
@@ -20,7 +20,7 @@ export const LowerBar: React.FC<LowerBarProps> = ({ nextPage, previousPage }) =>
             </Link>
 
             <style jsx>{`
-            .lower-bar {
+            .lower-bar-container {
                 width: 100%;
                 border: 0;
                 display: flex;

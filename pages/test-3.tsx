@@ -3,7 +3,7 @@ import { CodingEnvironment } from '../common/CodingEnvironment'
 
 const Introduction: NextPage = () => {
     const defaultCode = `<body> 
-<! --- Replace this line with a comment --->
+<h1>Bibloseo</h1>
 <p>What's up, doc?</p> 
 </body>`
     return (
@@ -18,9 +18,9 @@ const Instructions: React.FC = () => {
     return (
         <>
             <h1>Second Page</h1>
-            <p> There are different types of tags which serve different functions, for example &lt;h1&gt; &lt;/h1&gt; is a title.</p>
+            <p> There are different types of tags which serve different functions, for example &lt;h2&gt; &lt;/h2&gt; is a title.</p>
             <h2>Instructions</h2>
-            <p>Add a  &lt; h1&gt; &lt; /h1&gt; tags with the title &quot; Biblioseo&quot;</p>
+            <p>Add a  &lt;h2&gt; &lt;/h2&gt; tags with the title &quot;Subtitulo&quot;</p>
         </ >
     )
 }
