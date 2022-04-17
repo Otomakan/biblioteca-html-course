@@ -1,6 +1,7 @@
 import { convertURLToTitle } from "../lib/titleToUrl"
 import { Course, Chapter } from "../types"
-import { getContentTypeEntries, contentfulRequest, contentfulRequestGaphql, graphQLQuery } from "./contentfulRequest"
+import { serializeChapterResponse } from "./chapter"
+import { contentfulRequest, contentfulRequestGaphql, graphQLQuery } from "./contentfulRequest"
 
 interface ContentfulResponse {
 
@@ -9,24 +10,27 @@ interface ContentfulResponse {
 
 
 const serializeCourseResponse = (rawCourseRes: any): Course => {
+    const rawChapters = rawCourseRes?.chaptersCollection?.items || []
+    const chapters = rawChapters.map(serializeChapterResponse)
     return {
-        name: rawCourseRes.fields.name,
-        chapters: [],
-        cid: rawCourseRes.sys.id
+        name: rawCourseRes.name,
+        chapters,
+        cid: ''
     }
 }
 
 export const getAllCourses = async (): Promise<Course[]> => {
     try {
-        const res = await contentfulRequest(`/entries`, {
-            params: {
-                content_type: 'full-course',
-                // We use the select to only get limited number of entries 
-                //not all the chapters for instance
-                select: 'fields.name,sys.id'
+        const res = await graphQLQuery(`
+           query {
+                fullCourseCollection {
+                items {
+                    name
+                }
             }
-        })
-        const courses = res.data.items.map(serializeCourseResponse)
+        }
+        `)
+        const courses = res.data.data.fullCourseCollection.items.map(serializeCourseResponse)
         return courses
     } catch (e) {
         console.log(e)
@@ -35,21 +39,13 @@ export const getAllCourses = async (): Promise<Course[]> => {
 }
 export const getCourseInfoByName = async (courseName: string): Promise<Course> => {
     try {
-
-        // const res = await contentfulRequestGaphql('/', {
-        //     params: {
-        //         content_type: 'full-course',
-        //         ['fields.name']: convertURLToTitle(courseName),
-        //         include: 10
-        //     }
-        // })
         const res = await graphQLQuery(`
-           query{
-                fullCourseCollection (name:${courseName} {
+           query {
+                fullCourseCollection (where: {name: "${courseName}"}) {
                 items {
                     name
                     chaptersCollection{
-                        items{
+                        items {
                             name
                         }
                     }
@@ -57,11 +53,11 @@ export const getCourseInfoByName = async (courseName: string): Promise<Course> =
             }
         }
         `)
-        console.log(res.data.data.fullCourseCollection.items)
-        return res.data.items.map(serializeCourseResponse)[0]
+        console.log()
+        return res.data.data.fullCourseCollection.items.map(serializeCourseResponse)[0]
     } catch (e) {
         console.log(e)
         console.log(e.response.data)
-        // throw e
+        throw e
     }
 }

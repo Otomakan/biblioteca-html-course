@@ -6,10 +6,9 @@ interface ContentfulResponse {
 
 }
 
-const serializeChapterResponse = (rawChapterRes: any): Chapter => {
-    console.log({ rawChapterRes })
+export const serializeChapterResponse = (rawChapterRes: any): Chapter => {
     return {
-        name: rawChapterRes?.fields?.name
+        name: rawChapterRes?.name
     }
 
 }

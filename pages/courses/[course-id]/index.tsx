@@ -4,7 +4,7 @@ import { getAllChapters } from '../../../contentful/chapter'
 import { getAllCourses, getCourseInfoByName } from '../../../contentful/course'
 import { Chapter, Course } from '../../../types'
 import { v4 } from 'uuid'
-import { convertTitleToURL } from '../../../lib/titleToUrl'
+import { convertTitleToURL, convertURLToTitle } from '../../../lib/titleToUrl'
 interface HomePageProps {
     course: Course
 }
@@ -15,7 +15,7 @@ const Home: NextPage<HomePageProps> = ({ course }) => {
             <ul>
                 {course?.chapters.map((chapter: Chapter) => (
                     <li key={v4()}>
-                        <a href={`/chapters/${convertTitleToURL(chapter.name)}`}>
+                        <a href={`/courses/${convertTitleToURL(course.name)}/chapters/${convertTitleToURL(chapter.name)}`}>
                             {chapter.name}
                         </a>
                     </li>
@@ -26,7 +26,7 @@ const Home: NextPage<HomePageProps> = ({ course }) => {
 }
 
 export async function getStaticProps({ params }) {
-    const course: Course = await getCourseInfoByName(params['course-id'])
+    const course: Course = await getCourseInfoByName(convertURLToTitle(params['course-id']))
     console.log(course)
     // const chapters: Array<Chapter> = await getAllChapters(params['course-id'])
     return {
@@ -39,6 +39,7 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
     // Call an external API endpoint to get posts
     const courses = await getAllCourses()
+
     const paths = courses.map((course: any) => ({
         params: { ['course-id']: convertTitleToURL(course.name) },
     }))
