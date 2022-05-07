@@ -1,4 +1,4 @@
-import { AvailableLanguages } from '../index'
+import { AvailableLanguages } from '../../../types'
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs';
 import 'prismjs/components/prism-clike';
@@ -15,7 +15,6 @@ type CodeEditorProps = {
     language: AvailableLanguages;
 }
 export const CodeEditor: React.FC<CodeEditorProps> = ({ code, updateCode, language }) => {
-
     return (
         <CodingEnvironmentSection>
             <Editor

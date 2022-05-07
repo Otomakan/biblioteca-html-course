@@ -2,22 +2,26 @@ import { MouseEventHandler } from "react";
 import Link from 'next/link'
 import { ButtonPrimary } from "../../Button";
 export interface LowerBarProps {
-    nextPage?: string;
-    previousPage?: string;
+    nextLessonId?: string;
+    previousLessonId?: string;
 }
-export const LowerBar: React.FC<LowerBarProps> = ({ nextPage, previousPage }) => {
+export const LowerBar: React.FC<LowerBarProps> = ({ nextLessonId, previousLessonId }) => {
     return (
         <div className="lower-bar">
-            <Link passHref href={previousPage || ''}>
-                <ButtonPrimary inactive={!Boolean(previousPage)} style={{ margin: '0px' }}>
-                    Previous
-                </ButtonPrimary>
-            </Link>
-            <Link passHref href={nextPage || ''}>
-                <ButtonPrimary inactive={!Boolean(nextPage)} style={{ margin: '0px' }}>
-                    Next
-                </ButtonPrimary>
-            </Link>
+            {previousLessonId &&
+                <Link passHref href={previousLessonId || ''}>
+                    <ButtonPrimary inactive={!Boolean(previousLessonId)} style={{ margin: '0px' }}>
+                        Previous
+                    </ButtonPrimary>
+                </Link>
+            }
+            {nextLessonId &&
+                <Link passHref href={nextLessonId || ''}>
+                    <ButtonPrimary inactive={!Boolean(nextLessonId)} style={{ margin: '0px' }}>
+                        Next
+                    </ButtonPrimary>
+                </Link>
+            }
 
             <style jsx>{`
             .lower-bar {

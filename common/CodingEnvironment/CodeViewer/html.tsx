@@ -12,6 +12,7 @@ export const HTMLViewer: React.FC<HTMLViewerProps> = ({ code }) => {
                 width: 100%;
                 border: 0;
                 font-size: 3rem;
+                height: 100%;
             }
             `}</style>
         </>

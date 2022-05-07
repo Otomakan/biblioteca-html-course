@@ -1,5 +1,5 @@
 import { CodingEnvironmentSection } from '../../../components/CodingEnvironment/Section';
-import { AvailableLanguages } from '../index'
+import { AvailableLanguages } from '../../../types'
 import { HTMLViewer } from './html'
 
 type CodeViewerProps = {
@@ -8,7 +8,6 @@ type CodeViewerProps = {
 }
 
 export const CodeViewer: React.FC<CodeViewerProps> = ({ code, codeLanguage }) => {
-
     const getLanguageComponent = () => {
         switch (codeLanguage) {
             case ('html'):
@@ -23,6 +22,12 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({ code, codeLanguage }) =>
             <div className="editor-section code-language-section">
                 {getLanguageComponent()}
             </div>
+            <style jsx>{`
+            .editor-section{
+                height: 100%;
+            }`}
+
+            </style>
         </CodingEnvironmentSection>
     )
 }
