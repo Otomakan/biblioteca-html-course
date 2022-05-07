@@ -8,6 +8,12 @@ import { convertTitleToURL, convertURLToTitle } from '../../../lib/titleToUrl'
 interface HomePageProps {
     course: Course
 }
+export interface ChapterRouteStaticParams {
+    'course-id': string;
+}
+export interface ChapterRouteStaticContext {
+    params: ChapterRouteStaticParams
+}
 const Home: NextPage<HomePageProps> = ({ course }) => {
     return (
         <div className={styles.container}>
@@ -25,7 +31,8 @@ const Home: NextPage<HomePageProps> = ({ course }) => {
     )
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps(context: ChapterRouteStaticContext) {
+    const params = context.params
     const course: Course = await getCourseInfoById(params['course-id'])
     // const chapters: Array<Chapter> = await getAllChapters(params['course-id'])
     return {

@@ -2,13 +2,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-// import { getSpaceContentTypes } from '../api/contentfulRequest'
-import { useEffect } from 'react'
-import { loadGetInitialProps } from 'next/dist/shared/lib/utils'
-interface HomePageProps {
-  types: any
-}
-const Home: NextPage<HomePageProps> = ({ types }) => {
+
+const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
@@ -75,11 +70,6 @@ const Home: NextPage<HomePageProps> = ({ types }) => {
 }
 
 
-export async function getStaticProps() {
-  const types = await getSpaceContentTypes()
-  return {
-    props: { types }, // will be passed to the page component as props
-  }
-}
+
 export default Home
 

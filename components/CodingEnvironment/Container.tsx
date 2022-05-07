@@ -2,14 +2,14 @@ import { LowerBar } from "./LowerBar"
 import { LowerBarProps } from "./LowerBar";
 export interface CodingEnvironmentContainerProps extends LowerBarProps { }
 
-export const CodingEnvironmentContainer: React.FC<CodingEnvironmentContainerProps> = ({ nextPage, previousPage, children }) => {
+export const CodingEnvironmentContainer: React.FC<CodingEnvironmentContainerProps> = ({ nextLessonId, previousLessonId, children }) => {
     return (
         <div className="code-environment-container">
             <div className="code-environment">
                 {children}
             </div>
             <div className="lower-bar-container">
-                <LowerBar nextPage={nextPage} previousPage={previousPage} />
+                <LowerBar nextLessonId={nextLessonId} previousLessonId={previousLessonId} />
             </div>
             <style jsx>{`
         .code-environment-container {

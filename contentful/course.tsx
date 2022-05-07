@@ -59,7 +59,6 @@ export const getCourseInfoByName = async (courseName: string): Promise<Course> =
         return res.data.data.fullCourseCollection.items.map(serializeCourseResponse)[0]
     } catch (e) {
         console.log(e)
-        console.log(e.response.data)
         throw e
     }
 }
@@ -82,7 +81,6 @@ export const getCourseInfoById = async (courseId: string): Promise<Course> => {
         return [res.data.data.fullCourse].map(serializeCourseResponse)[0]
     } catch (e) {
         console.log(e)
-        console.log(e.response.data)
         throw e
     }
 }

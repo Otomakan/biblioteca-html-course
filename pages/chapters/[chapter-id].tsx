@@ -3,9 +3,14 @@ import styles from '../../styles/Home.module.css'
 import { getAllChapters, getChapterInfoById } from '../../contentful/chapter'
 import { Chapter, Lesson } from '../../types'
 import { v4 } from 'uuid'
-import { convertTitleToURL, convertURLToTitle } from '../../lib/titleToUrl'
 interface HomePageProps {
     chapter: Chapter
+}
+export interface ChapterRouteStaticParams {
+    'chapter-id': string;
+}
+export interface ChapterRouteStaticContext {
+    params: ChapterRouteStaticParams
 }
 const Home: NextPage<HomePageProps> = ({ chapter }) => {
     return (
@@ -24,7 +29,9 @@ const Home: NextPage<HomePageProps> = ({ chapter }) => {
     )
 }
 
-export async function getStaticProps({ params }) {
+
+export async function getStaticProps(context: ChapterRouteStaticContext) {
+    const params = context.params
     const chapter: Chapter = await getChapterInfoById(params['chapter-id'])
     // const chapters: Array<Chapter> = await getAllChapters(params['chapter-id'])
     return {
@@ -34,7 +41,7 @@ export async function getStaticProps({ params }) {
 
 
 
-export async function getStaticPaths(props) {
+export async function getStaticPaths() {
     // Call an external API endpoint to get posts
     const courses = await getAllChapters()
 

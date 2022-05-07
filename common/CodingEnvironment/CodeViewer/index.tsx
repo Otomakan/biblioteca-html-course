@@ -22,6 +22,12 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({ code, codeLanguage }) =>
             <div className="editor-section code-language-section">
                 {getLanguageComponent()}
             </div>
+            <style jsx>{`
+            .editor-section{
+                height: 100%;
+            }`}
+
+            </style>
         </CodingEnvironmentSection>
     )
 }

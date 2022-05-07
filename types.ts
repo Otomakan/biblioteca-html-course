@@ -7,8 +7,8 @@ export interface Lesson {
     instructions: any;
     defaultCode: string;
     language: AvailableLanguages;
-    nextClass?: string;
-    previousClass?: string;
+    nextLessonId?: string;
+    previousLessonId?: string;
 }
 export interface Chapter {
     name: string;

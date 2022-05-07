@@ -1,19 +1,21 @@
-import { Lesson } from "../types"
+import { AvailableLanguages, Lesson } from "../types"
 import { graphQLQuery } from "./contentfulRequest"
 
 export const serializeLessonCollection = (rawLessonRes: any): Lesson => {
-    let language = 'html'
+    let language = 'html' as AvailableLanguages
     if (rawLessonRes?.language)
-        language = rawLessonRes.language[0]
+        language = rawLessonRes.language[0] as AvailableLanguages
+
+    console.log({ rawLessonRes })
     return {
         title: rawLessonRes?.title,
         id: rawLessonRes?.sys?.id || '',
-        explanation: rawLessonRes?.explanation?.json || undefined,
-        instructions: rawLessonRes?.instructions?.json || undefined,
+        explanation: rawLessonRes?.explanation?.json || null,
+        instructions: rawLessonRes?.instructions?.json || null,
         defaultCode: rawLessonRes?.defaultCode || '',
         language,
-        nextClass: rawLessonRes?.nextClass?.sys.id || null,
-        previousClass: rawLessonRes?.previousClass?.sys.id || null,
+        nextLessonId: rawLessonRes?.nextclass?.sys.id || null,
+        previousLessonId: rawLessonRes?.previousclass?.sys.id || null,
     }
 }
 
@@ -68,7 +70,6 @@ export const getLessonInfoById = async (lessonId: string): Promise<Lesson> => {
         return [res.data.data.lesson].map(serializeLessonCollection)[0]
     } catch (e) {
         // console.log(e)
-        console.log(e.response)
         throw e
     }
 }

@@ -1,6 +1,5 @@
-import { convertURLToTitle } from "../lib/titleToUrl"
-import { Course, Chapter } from "../types"
-import { getContentTypeEntries, contentfulRequest, graphQLQuery } from "./contentfulRequest"
+import { Chapter } from "../types"
+import { graphQLQuery } from "./contentfulRequest"
 import { serializeLessonCollection } from "./lesson"
 
 interface ContentfulResponse {
@@ -60,7 +59,6 @@ export const getChapterInfoById = async (chapterId: string): Promise<Chapter> =>
         return [res.data.data.chapter].map(serializeChapterResponse)[0]
     } catch (e) {
         // console.log(e)
-        console.log(e.response.data)
         throw e
     }
 }// export const getAllChapters = async (): Promise<Course[]> => {
