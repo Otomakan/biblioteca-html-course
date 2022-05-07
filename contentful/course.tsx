@@ -13,9 +13,9 @@ const serializeCourseResponse = (rawCourseRes: any): Course => {
     const rawChapters = rawCourseRes?.chaptersCollection?.items || []
     const chapters = rawChapters.map(serializeChapterResponse)
     return {
-        name: rawCourseRes.name,
+        name: rawCourseRes?.name,
         chapters,
-        cid: ''
+        id: rawCourseRes?.sys?.id
     }
 }
 
@@ -26,6 +26,9 @@ export const getAllCourses = async (): Promise<Course[]> => {
                 fullCourseCollection {
                 items {
                     name
+                    sys {
+                        id
+                    }
                 }
             }
         }
@@ -55,6 +58,31 @@ export const getCourseInfoByName = async (courseName: string): Promise<Course> =
         `)
         console.log()
         return res.data.data.fullCourseCollection.items.map(serializeCourseResponse)[0]
+    } catch (e) {
+        console.log(e)
+        console.log(e.response.data)
+        throw e
+    }
+}
+export const getCourseInfoById = async (courseId: string): Promise<Course> => {
+    try {
+        console.log({ courseId })
+        const res = await graphQLQuery(`
+           query {
+                fullCourse (id : "${courseId}") {
+                    name
+                    sys {id}
+                    chaptersCollection{
+                        items {
+                            name
+                            sys {id} 
+                        }
+                    }
+            }
+        }
+        `)
+        console.log(res.data)
+        return [res.data.data.fullCourse].map(serializeCourseResponse)[0]
     } catch (e) {
         console.log(e)
         console.log(e.response.data)

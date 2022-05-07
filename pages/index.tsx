@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { getSpaceContentTypes } from './api/contentfulRequest'
+// import { getSpaceContentTypes } from '../api/contentfulRequest'
 import { useEffect } from 'react'
 import { loadGetInitialProps } from 'next/dist/shared/lib/utils'
 interface HomePageProps {

@@ -20,7 +20,7 @@ const Home: NextPage<HomePageProps> = ({ courses }) => {
             <ul>
                 {courses.map((course: Course) => (
                     <li key={v4()}>
-                        <a href={`/courses/${convertTitleToURL(course.name)}`}>
+                        <a href={`/courses/${course.id}`}>
                             {course.name}
                         </a>
                     </li>

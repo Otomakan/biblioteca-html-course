@@ -8,7 +8,8 @@ interface ContentfulResponse {
 
 export const serializeChapterResponse = (rawChapterRes: any): Chapter => {
     return {
-        name: rawChapterRes?.name
+        name: rawChapterRes?.name,
+        id: rawChapterRes?.id
     }
 
 }
