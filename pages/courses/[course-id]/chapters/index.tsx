@@ -8,7 +8,6 @@ interface HomePageProps {
     chapters: Array<Chapter>
 }
 const Home: NextPage<HomePageProps> = ({ chapters }) => {
-    console.log(chapters)
     return (
         <div className={styles.container}>
             <h1>Chapters</h1>

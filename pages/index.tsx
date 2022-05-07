@@ -9,7 +9,6 @@ interface HomePageProps {
   types: any
 }
 const Home: NextPage<HomePageProps> = ({ types }) => {
-  console.log(types)
   return (
     <div className={styles.container}>
       <Head>
@@ -78,7 +77,6 @@ const Home: NextPage<HomePageProps> = ({ types }) => {
 
 export async function getStaticProps() {
   const types = await getSpaceContentTypes()
-  console.log(types)
   return {
     props: { types }, // will be passed to the page component as props
   }

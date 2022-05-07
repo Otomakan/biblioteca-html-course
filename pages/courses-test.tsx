@@ -9,7 +9,6 @@ interface HomePageProps {
     courses: any
 }
 const Home: NextPage<HomePageProps> = ({ courses }) => {
-    console.log(courses)
     return (
         <div className={styles.container}>
 
@@ -21,7 +20,6 @@ const Home: NextPage<HomePageProps> = ({ courses }) => {
 
 export async function getStaticProps() {
     const courses = await getAllCourses()
-    console.log(courses)
     return {
         props: { courses }, // will be passed to the page component as props
     }

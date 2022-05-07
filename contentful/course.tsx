@@ -56,7 +56,6 @@ export const getCourseInfoByName = async (courseName: string): Promise<Course> =
             }
         }
         `)
-        console.log()
         return res.data.data.fullCourseCollection.items.map(serializeCourseResponse)[0]
     } catch (e) {
         console.log(e)
@@ -66,7 +65,6 @@ export const getCourseInfoByName = async (courseName: string): Promise<Course> =
 }
 export const getCourseInfoById = async (courseId: string): Promise<Course> => {
     try {
-        console.log({ courseId })
         const res = await graphQLQuery(`
            query {
                 fullCourse (id : "${courseId}") {
@@ -81,7 +79,6 @@ export const getCourseInfoById = async (courseId: string): Promise<Course> => {
             }
         }
         `)
-        console.log(res.data)
         return [res.data.data.fullCourse].map(serializeCourseResponse)[0]
     } catch (e) {
         console.log(e)

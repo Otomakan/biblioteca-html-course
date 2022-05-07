@@ -15,7 +15,6 @@ type CodeEditorProps = {
     language: AvailableLanguages;
 }
 export const CodeEditor: React.FC<CodeEditorProps> = ({ code, updateCode, language }) => {
-
     return (
         <CodingEnvironmentSection>
             <Editor

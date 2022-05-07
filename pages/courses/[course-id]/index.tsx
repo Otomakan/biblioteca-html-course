@@ -15,7 +15,7 @@ const Home: NextPage<HomePageProps> = ({ course }) => {
             <ul>
                 {course?.chapters.map((chapter: Chapter) => (
                     <li key={v4()}>
-                        <a href={`/courses/${convertTitleToURL(course.name)}/chapters/${convertTitleToURL(chapter.name)}`}>
+                        <a href={`/chapters/${(chapter.id)}`}>
                             {chapter.name}
                         </a>
                     </li>
@@ -27,7 +27,6 @@ const Home: NextPage<HomePageProps> = ({ course }) => {
 
 export async function getStaticProps({ params }) {
     const course: Course = await getCourseInfoById(params['course-id'])
-    console.log({ course })
     // const chapters: Array<Chapter> = await getAllChapters(params['course-id'])
     return {
         props: { course }, // will be passed to the page component as props
@@ -39,8 +38,8 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
     // Call an external API endpoint to get posts
     const courses = await getAllCourses()
+    const chapters = await getAllChapters()
 
-    console.log({ courses })
     const paths = courses.map((course: any) => ({
         params: { ['course-id']: course.id },
     }))
