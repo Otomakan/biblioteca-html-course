@@ -6,7 +6,6 @@ export const serializeLessonCollection = (rawLessonRes: any): Lesson => {
     if (rawLessonRes?.language)
         language = rawLessonRes.language[0] as AvailableLanguages
 
-    console.log({ rawLessonRes })
     return {
         title: rawLessonRes?.title,
         id: rawLessonRes?.sys?.id || '',
