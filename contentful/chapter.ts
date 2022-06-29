@@ -11,8 +11,8 @@ export const serializeChapterResponse = (rawChapterRes: any): Chapter => {
 
     const lessons = rawLessons.map(serializeLessonCollection)
     return {
-        name: rawChapterRes?.name,
-        id: rawChapterRes?.sys?.id,
+        name: rawChapterRes?.name || '',
+        id: rawChapterRes?.sys?.id || null,
         lessons
     }
 

@@ -44,9 +44,9 @@ export async function getStaticProps(context: ChapterRouteStaticContext) {
 
 export async function getStaticPaths() {
     // Call an external API endpoint to get posts
-    const courses = await getAllCourses()
-    const chapters = await getAllChapters()
-
+    let courses = await getAllCourses()
+    // const chapters = await getAllChapters()
+    courses = courses.filter(c => c.id !== '50zu2xqaM2hPNvu8t11KnR')
     const paths = courses.map((course: any) => ({
         params: { ['course-id']: course.id },
     }))
